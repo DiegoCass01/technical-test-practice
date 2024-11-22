@@ -8,6 +8,7 @@ export function App () {
   const [fact, setFact] = useState()
   const [imageUrl, setImageUrl] = useState()
 
+  // gets the fact when rendering the page
   useEffect(() => {
     fetch(CAT_ENDPOINT_RANDOM_FACT)
       .then(res => res.json())
@@ -15,12 +16,17 @@ export function App () {
         // getting the fact
         const { fact } = data
         setFact(fact)
-        // getting first word
-        const firstWord = fact.split(' ')[0]
-        // and setting the url with the fact's first word
-        setImageUrl(`${CAT_PREFIX_IMAGE_URL}${firstWord}`)
       })
   }, [])
+
+  // gets the image if theres a new fact
+  useEffect(() => {
+    if (!fact) return
+    // getting first word
+    const firstWord = fact.split(' ')[0]
+    // and setting the url with the fact's first word
+    setImageUrl(`${CAT_PREFIX_IMAGE_URL}${firstWord}`)
+  }, [fact])
 
   return (
     <main>
