@@ -31,8 +31,9 @@ export function App () {
   return (
     <main>
       <h1>App de Gatitos</h1>
-      {fact && <p>{fact}</p>}
       {imageUrl && <img src={imageUrl} alt={`Extracted from ${fact}`} height={500} />}
+      {fact && <p>{fact}</p>}
+
     </main>
   )
 }
