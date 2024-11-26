@@ -1,22 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import { getRandomFact } from './services/facts'
-
-const CAT_PREFIX_IMAGE_URL = 'https://cataas.com/cat/says/'
-
-function useCatImage ({ fact }) {
-  const [imageUrl, setImageUrl] = useState()
-  // gets the image if theres a new fact
-  useEffect(() => {
-    if (!fact) return
-    // getting first word
-    const firstWord = fact.split(' ')[0]
-    // and setting the url with the fact's first word
-    setImageUrl(`${CAT_PREFIX_IMAGE_URL}${firstWord}`)
-  }, [fact])
-
-  return { imageUrl }
-}
+import { useCatImage } from './hooks/useCatImage'
 
 export function App () {
   const [fact, setFact] = useState()
