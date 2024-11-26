@@ -2,11 +2,11 @@ body {
   background-color: black;
   color: white;
 }
+
 main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-self: center;
+  place-items: center;
   max-width: 800px;
   margin: 0 auto;
   font-family: system-ui;
