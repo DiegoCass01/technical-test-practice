@@ -3,19 +3,21 @@ import './App.css'
 import { getRandomFact } from './services/facts'
 import { useCatImage } from './hooks/useCatImage'
 
-export function App () {
+const useCatFact = () => {
   const [fact, setFact] = useState()
+  const refreshFact = () => {
+    getRandomFact().then(newFact => setFact(newFact))
+  }
+  useEffect(refreshFact, [])
+  return { fact, refreshFact }
+}
+
+export function App () {
+  const { fact, refreshFact } = useCatFact()
   const { imageUrl } = useCatImage({ fact })
 
-  // gets the fact when rendering the page
-  useEffect(async () => {
-    const newFact = await getRandomFact()
-    setFact(newFact)
-  }, [])
-
   const handleClick = async () => {
-    const newFact = await getRandomFact()
-    setFact(newFact)
+    refreshFact()
   }
 
   return (
