@@ -4,16 +4,8 @@ import { getRandomFact } from './services/facts'
 
 const CAT_PREFIX_IMAGE_URL = 'https://cataas.com/cat/says/'
 
-export function App () {
-  const [fact, setFact] = useState()
+function useCatImage ({ fact }) {
   const [imageUrl, setImageUrl] = useState()
-
-  // gets the fact when rendering the page
-  useEffect(async () => {
-    const newFact = await getRandomFact()
-    setFact(newFact)
-  }, [])
-
   // gets the image if theres a new fact
   useEffect(() => {
     if (!fact) return
@@ -22,6 +14,19 @@ export function App () {
     // and setting the url with the fact's first word
     setImageUrl(`${CAT_PREFIX_IMAGE_URL}${firstWord}`)
   }, [fact])
+
+  return { imageUrl }
+}
+
+export function App () {
+  const [fact, setFact] = useState()
+  const { imageUrl } = useCatImage({ fact })
+
+  // gets the fact when rendering the page
+  useEffect(async () => {
+    const newFact = await getRandomFact()
+    setFact(newFact)
+  }, [])
 
   const handleClick = async () => {
     const newFact = await getRandomFact()
