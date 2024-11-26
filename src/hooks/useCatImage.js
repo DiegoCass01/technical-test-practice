@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+const CAT_PREFIX_IMAGE_URL = 'https://cataas.com/cat/says/'
 
 export function useCatImage ({ fact }) {
   const [imageUrl, setImageUrl] = useState()
@@ -8,8 +9,8 @@ export function useCatImage ({ fact }) {
     // getting first word
     const firstWord = fact.split(' ')[0]
     // and setting the url with the fact's first word
-    setImageUrl(`https://cataas.com/cat/says/${firstWord}`)
+    setImageUrl(firstWord)
   }, [fact])
 
-  return { imageUrl }
+  return { imageUrl: `${CAT_PREFIX_IMAGE_URL}${imageUrl}` }
 }
