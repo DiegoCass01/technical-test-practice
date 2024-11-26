@@ -1,7 +1,6 @@
 import './App.css'
 import { useCatImage } from './hooks/useCatImage'
 import { useCatFact } from './hooks/useCatFact'
-import { Otro } from './components/Otro'
 
 export function App () {
   const { fact, refreshFact } = useCatFact()
@@ -21,7 +20,6 @@ export function App () {
           src={imageUrl}
           alt={`Extracted from ${fact}`} height={500}
         />}
-      <Otro />
     </main>
   )
 }
